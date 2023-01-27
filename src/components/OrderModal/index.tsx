@@ -8,10 +8,19 @@ interface OrderModalProps {
   visible: boolean;
   order: Order | null;
   onClose: () => void;
+  onCancelOrder: () => Promise<void>;
+  isLoading: boolean;
+  onChangeOrderStatus: () => void;
 }
 
-export function OrderModal({ visible, order, onClose }: OrderModalProps) {
-
+export function OrderModal({
+  visible,
+  order,
+  onClose,
+  onCancelOrder,
+  isLoading,
+  onChangeOrderStatus,
+}: OrderModalProps) {
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === 'Escape') {
@@ -31,7 +40,7 @@ export function OrderModal({ visible, order, onClose }: OrderModalProps) {
   }
 
   const total = order.products.reduce((total, { product, quantity }) => {
-    return total + (product.price * quantity);
+    return total + product.price * quantity;
   }, 0);
 
   return (
@@ -75,9 +84,7 @@ export function OrderModal({ visible, order, onClose }: OrderModalProps) {
                   height={28.51}
                 />
 
-                <span className="quantity">
-                  {quantity}x
-                </span>
+                <span className="quantity">{quantity}x</span>
 
                 <div className="product-details">
                   <strong>{product.name}</strong>
@@ -94,12 +101,30 @@ export function OrderModal({ visible, order, onClose }: OrderModalProps) {
         </OrderDetails>
 
         <Actions>
-          <button type="button" className="primary">
-            <span>👩‍🍳</span>
-            <span>Iniciar produção</span>
-          </button>
+          {order.status !== 'DONE' && (
+            <button
+              type="button"
+              className="primary"
+              disabled={isLoading}
+              onClick={onChangeOrderStatus}
+            >
+              <span>
+                {order.status === 'WAITING' && '👩‍🍳'}
+                {order.status === 'IN_PRODUCTION' && '😋'}
+              </span>
+              <span>
+                {order.status === 'WAITING' && 'Iniciar produção'}
+                {order.status === 'IN_PRODUCTION' && 'Concluir pedido'}
+              </span>
+            </button>
+          )}
 
-          <button type="button" className="secondary" onClick={onClose}>
+          <button
+            type="button"
+            className="secondary"
+            onClick={onCancelOrder}
+            disabled={isLoading}
+          >
             Cancelar pedido
           </button>
         </Actions>
@@ -107,3 +132,5 @@ export function OrderModal({ visible, order, onClose }: OrderModalProps) {
     </Overlay>
   );
 }
+
+// 41min web sockets
