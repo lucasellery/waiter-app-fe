@@ -46,7 +46,7 @@ export function OrdersBoard({ icon, title, orders, onCancelOrder, onChangeOrderS
   async function handleCancelOrder() {
     setIsLoading(true);
 
-    await new Promise(resolve => setTimeout(resolve, 3000));
+    await new Promise(resolve => setTimeout(resolve, 1000));
     await api.delete(`orders/${selectedOrder?._id}`);
 
     toast.success(`O pedido da mesa ${selectedOrder?.table} foi cancelado com sucesso!`);

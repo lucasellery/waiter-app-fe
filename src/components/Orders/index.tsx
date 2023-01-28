@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import socketIo from 'socket.io-client';
+import { toast } from 'react-toastify';
 import { Order } from '../../types/Order';
 import { api } from '../../utils/api';
 import { OrdersBoard } from '../OrdersBoard';
@@ -7,12 +9,28 @@ import { Container } from './styles';
 export function Orders() {
   const [orders, setOrders] = useState<Order[]>([]);
 
+  const handleAddOrderBySocket = useCallback(() => {
+    const socket = socketIo('http://localhost:3001', {
+      transports: ['websocket'],
+    });
+
+    socket.on('orders@new', (order) => {
+      setOrders(prevState => prevState.concat(order));
+
+      if (order) toast.info('Um pedido foi adicionado à fila de espera'!);
+    });
+  }, []);
+
+  useEffect(() => {
+    handleAddOrderBySocket();
+  }, [handleAddOrderBySocket]);
+
   useEffect(() => {
     api.get('/orders')
       .then(({ data }) => {
         setOrders(data);
       });
-  }, []);
+  }, [orders]);
 
   const waiting = orders.filter(order => order.status === 'WAITING');
   const inProduction = orders.filter(order => order.status === 'IN_PRODUCTION');
