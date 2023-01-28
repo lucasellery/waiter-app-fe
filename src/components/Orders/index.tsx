@@ -9,7 +9,7 @@ import { Container } from './styles';
 export function Orders() {
   const [orders, setOrders] = useState<Order[]>([]);
 
-  const handleAddOrderBySocket = useCallback(() => {
+  useEffect(() => {
     const socket = socketIo('http://localhost:3001', {
       transports: ['websocket'],
     });
@@ -22,15 +22,11 @@ export function Orders() {
   }, []);
 
   useEffect(() => {
-    handleAddOrderBySocket();
-  }, [handleAddOrderBySocket]);
-
-  useEffect(() => {
     api.get('/orders')
       .then(({ data }) => {
         setOrders(data);
       });
-  }, [orders]);
+  }, []);
 
   const waiting = orders.filter(order => order.status === 'WAITING');
   const inProduction = orders.filter(order => order.status === 'IN_PRODUCTION');
