@@ -15,33 +15,35 @@ export function Orders() {
     });
 
     socket.on('orders@new', (order) => {
-      setOrders(prevState => prevState.concat(order));
-
-      if (order) toast.info('Um pedido foi adicionado à fila de espera'!);
+      setOrders((prevState) => prevState.concat(order));
+      if (orders) toast.info('Um pedido foi adicionado à fila de espera'!);
     });
   }, []);
 
   useEffect(() => {
-    api.get('/orders')
-      .then(({ data }) => {
-        setOrders(data);
-      });
+    api.get('/orders').then(({ data }) => {
+      setOrders(data);
+    });
   }, []);
 
-  const waiting = orders.filter(order => order.status === 'WAITING');
-  const inProduction = orders.filter(order => order.status === 'IN_PRODUCTION');
-  const done = orders.filter(order => order.status === 'DONE');
+  const waiting = orders.filter((order) => order.status === 'WAITING');
+  const inProduction = orders.filter(
+    (order) => order.status === 'IN_PRODUCTION'
+  );
+  const done = orders.filter((order) => order.status === 'DONE');
 
   function handleCancelOrder(orderId: string) {
-    setOrders((prevState) => prevState.filter(order => order._id !== orderId));
+    setOrders((prevState) =>
+      prevState.filter((order) => order._id !== orderId)
+    );
   }
 
   function handleOrderStatusChange(orderId: string, status: Order['status']) {
-    setOrders(prevState => prevState.map((order) => (
-      order._id === orderId
-        ? { ...order, status }
-        : order
-    )));
+    setOrders((prevState) =>
+      prevState.map((order) =>
+        order._id === orderId ? { ...order, status } : order
+      )
+    );
   }
 
   return (
