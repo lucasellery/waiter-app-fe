@@ -19,8 +19,6 @@ export function Form() {
   const isButtonDisabled = formValues.email.length <= 0 || formValues.password.length < 4;
   const incorrectPasswordLabel = isPasswordIncorrect ? 'Senha incorreta. Tente novamente.' : 'Senha é obrigatória e deve ter no mínimo 4 caracteres.';
 
-  const icon = showPassword ? 'eye-slash' : 'eye';
-
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
@@ -42,7 +40,7 @@ export function Form() {
     }
 
     setIsPasswordIncorrect(false);
-    navigate('/home');
+    navigate('/dashboard');
   };
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {

@@ -5,6 +5,8 @@ import {
 } from 'react-router-dom';
 import { App } from '../App';
 import ErrorPage from '../pages/ErrorPage';
+import { Historic } from '../pages/Historic';
+import { Home } from '../pages/Home';
 import { Login } from '../pages/Login';
 
 export const router = createBrowserRouter(
@@ -16,11 +18,17 @@ export const router = createBrowserRouter(
         index
         errorElement={<ErrorPage />}
       />
-      <Route
-        path='/home'
-        element={<App />}
-        errorElement={<ErrorPage />}
-      />
+      <Route element={<App />}>
+        <Route
+          path='/dashboard'
+          element={<Home />}
+          errorElement={<ErrorPage />}
+        />
+        <Route
+          path='/historic'
+          element={<Historic />}
+        />
+      </Route>
     </>
   )
 );
