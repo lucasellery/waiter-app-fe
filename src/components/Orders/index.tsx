@@ -15,7 +15,10 @@ export function Orders() {
     });
 
     socket.on('orders@new', (order) => {
-      setOrders((prevState) => prevState.concat(order));
+      // setOrders((prevState) => prevState.concat(order));
+
+      setOrders((prevState) => [...prevState, order]);
+
       if (orders) toast.info('Um pedido foi adicionado à fila de espera'!);
     });
   }, []);
