@@ -1,11 +1,12 @@
-import { Header } from '../../components/Header';
+import { Header } from './Header';
 import { Orders } from '../../components/Orders';
+import { Container } from './styles';
 
 export function Home() {
   return (
-    <>
-      {/* <Header /> */}
+    <Container>
+      <Header />
       <Orders />
-    </>
+    </Container>
   );
 }

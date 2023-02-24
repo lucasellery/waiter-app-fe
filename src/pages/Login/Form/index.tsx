@@ -40,7 +40,7 @@ export function Form() {
     }
 
     setIsPasswordIncorrect(false);
-    navigate('/dashboard');
+    navigate('/dashboard/orders');
   };
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {

@@ -1,20 +1,20 @@
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SideMenu from './components/SideMenu';
-import { Home } from './pages/Home';
 import styled from 'styled-components';
+import AppRoutes from './routes/AppRoutes';
 
-const HomeContainer = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: row;
 `;
 
 export function App() {
   return (
-    <HomeContainer>
+    <Container>
       <SideMenu />
-      <Home />
+      <AppRoutes />
       <ToastContainer position="bottom-center" />
-    </HomeContainer>
+    </Container>
   );
 }

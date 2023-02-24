@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
+interface Props {
+  activeMenu?: boolean;
+}
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -24,12 +28,24 @@ export const Container = styled.div`
   }
 `;
 
-export const Nav = styled(NavLink)`
+export const Nav = styled(NavLink)<Props>`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  color: #666666;
+  color: ${({ activeMenu }) => activeMenu ? '#D73035' : '#666666'};
+
+  p {
+    white-space: nowrap;
+    margin-bottom: 8px;
+  }
+
+  hr {
+    border-bottom: ${({ activeMenu }) => activeMenu && '1.5px solid #D73035'} ;
+    color: ${({ activeMenu }) => activeMenu && '#D73035'};
+    width: ${({ activeMenu }) => activeMenu && '12px'};
+    display: ${({ activeMenu }) => !activeMenu && 'none'}
+  }
 
   &:hover {
     color: #D73035;

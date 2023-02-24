@@ -19,6 +19,12 @@ export const Board = styled.div`
     align-items: center;
 
     gap: 8px;
+
+    span:last-child {
+      padding: 4px 8px;
+      background: rgba(204, 204, 204, 0.2);
+      border-radius: 4px;
+    }
   }
 `;
 
