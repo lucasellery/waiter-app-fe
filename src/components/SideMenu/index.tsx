@@ -35,9 +35,9 @@ function SideMenu() {
     const navigationItem: any = {
       '/dashboard/orders': '1',
       '/dashboard/historic': '2',
-      3: '3',
-      4: '4',
-      5: '5',
+      '/dashboard/menu': '3',
+      '/dashboard/users': '4',
+      '/dashboard/my-profile': '5',
       default: '0',
     };
 

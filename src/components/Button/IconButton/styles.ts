@@ -5,8 +5,7 @@ interface IconButtonProps {
   weight?: string;
 }
 
-export const Container = styled.div`
-`;
+export const Container = styled.div``;
 
 export const Button = styled.button<IconButtonProps>`
   width: 108px;
@@ -19,15 +18,17 @@ export const Button = styled.button<IconButtonProps>`
   flex-wrap: nowrap;
   align-items: center;
 
+  text-transform: ease-in-out 300ms;
+
   p {
     margin-left: ${(({ direction }) => direction === 'row' && '12px')};
-    color: ${(({ direction }) => direction === 'row' ? '#D73035' : '#666666')};
+    color: ${(({ direction }) => direction === 'row' && '#D73035')};
     white-space: nowrap;
     font-weight: ${(({weight}) => weight)};
   }
 
   &:hover {
-    color: #D73035;
+    color: ${(({ direction }) => direction === 'column' && '#D73035')};
     filter: ${(({ direction }) => direction === 'row' && 'brightness(120%) saturate(120%)')};
   }
 `;

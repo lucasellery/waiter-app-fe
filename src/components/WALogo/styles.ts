@@ -4,7 +4,7 @@ export const Container = styled.div`
   display: flex;
   flex-flow: row nowrap;
   color: #666666;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 `;
 
 export const W = styled.h1`
