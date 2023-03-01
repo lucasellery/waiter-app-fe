@@ -56,7 +56,7 @@ function SideMenu() {
               onClick={() => handleChangeActiveMenu(1)}
               activeMenu={activeMenu === '1'}
             >
-              <RiHomeLine />
+              <RiHomeLine size={18} />
               <p>Home</p>
               <hr />
             </Nav>
@@ -67,7 +67,7 @@ function SideMenu() {
               onClick={() => handleChangeActiveMenu(2)}
               activeMenu={activeMenu === '2'}
             >
-              <TfiReceipt />
+              <TfiReceipt size={18} />
               <p>Histórico</p>
               <hr />
             </Nav>
@@ -78,7 +78,7 @@ function SideMenu() {
               onClick={() => handleChangeActiveMenu(3)}
               activeMenu={activeMenu === '3'}
             >
-              <BsJournalText />
+              <BsJournalText size={18} />
               <p>Cardápio</p>
             </Nav>
           </li>
@@ -88,7 +88,7 @@ function SideMenu() {
               onClick={() => handleChangeActiveMenu(4)}
               activeMenu={activeMenu === '4'}
             >
-              <FiUsers />
+              <FiUsers size={18} />
               <p>Usuários</p>
             </Nav>
           </li>
@@ -102,15 +102,16 @@ function SideMenu() {
               onClick={() => handleChangeActiveMenu(5)}
               activeMenu={activeMenu === '5'}
             >
-              <CgProfile />
+              <CgProfile size={18} />
               <p>Meu perfil</p>
             </Nav>
           </li>
           <li>
             <Nav to="logout">
               <IconButton
-                icon={<AiOutlinePoweroff />}
+                icon={<AiOutlinePoweroff size={18} />}
                 label="Sair"
+                direction='column'
               />
             </Nav>
           </li>
