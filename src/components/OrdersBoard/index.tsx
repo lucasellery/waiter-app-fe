@@ -60,7 +60,7 @@ export function OrdersBoard({ icon, title, orders, onCancelOrder, onChangeOrderS
       <header>
         <span>{icon}</span>
         <strong>{title}</strong>
-        <span>({orders?.length})</span>
+        <span>{orders?.length}</span>
       </header>
 
       {orders.length > 0 && (
